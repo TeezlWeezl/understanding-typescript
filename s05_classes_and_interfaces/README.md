@@ -436,7 +436,7 @@ const employee1 = Department.createEmployee('Max');
 console.log(employee1, Department.fiscalYear);
 ```
 
-Note: you you add a `static` property or method, you can't access them from your non static parts.
+Note: you add a `static` property or method, you can't access them from your non static parts.
 
 ```ts
   //...
@@ -627,7 +627,7 @@ user1 = new Person('Max'); // OK
 
 > Note: YOU CAN ONLY INHERIT FROM ONE CLASS BUT YOU CAN IMPLEMENT MORE THAN ONE INTERFACE.
 
-An interface is a bit like an abstract class. But the main difference is interface doesn't have any details about the implementation at all. And the abstract class has a mix between how the object should like and implementation as well.
+An interface is a bit like an abstract class. But the main difference is interface doesn't have any details about the implementation at all. And the abstract class has a mix between how the object should look like and implementation as well.
 
 ---
 
@@ -673,7 +673,7 @@ interface Greetable extends Named {
 class Person implements Greetable {
 ```
 
-An interface can inherit from more than one interface (≠ than for class).
+An interface can inherit from more than one interface (`≠ than for class`).
 
 ```ts
 interface Greetable extends Named, AnotherInterface {...}
