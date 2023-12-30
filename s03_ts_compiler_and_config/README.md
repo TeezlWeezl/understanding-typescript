@@ -1,5 +1,21 @@
 # The TypeScript Compiler (and its Configuration)
 
+**Table of Contents**
+- [The TypeScript Compiler (and its Configuration)](#the-typescript-compiler-and-its-configuration)
+    - [Useful Resources \& Links](#useful-resources--links)
+    - [Using "Watch Mode"](#using-watch-mode)
+    - [Compiling the Entire Project / Multiple Files](#compiling-the-entire-project--multiple-files)
+    - [Including \& Excluding Files](#including--excluding-files)
+    - [Setting a Compilation Target](#setting-a-compilation-target)
+    - [Understanding TypeScript Core Libs](#understanding-typescript-core-libs)
+    - [Working with Source Maps](#working-with-source-maps)
+    - [rootDir and outDir](#rootdir-and-outdir)
+    - [Stop Emitting Files on Compilation Errors](#stop-emitting-files-on-compilation-errors)
+    - [Strict Compilation](#strict-compilation)
+    - [Code Quality Options](#code-quality-options)
+    - [Debugging with Visual Studio Code](#debugging-with-visual-studio-code)
+
+
 ### Useful Resources & Links
 
 - [tsconfig Docs](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)

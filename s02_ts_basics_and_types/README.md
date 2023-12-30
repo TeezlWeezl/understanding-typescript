@@ -1,5 +1,41 @@
 # TypeScript Basics & Basic Types
 
+**Table of Contents**
+- [TypeScript Basics \& Basic Types](#typescript-basics--basic-types)
+    - [Intro](#intro)
+    - [Type Inference (Inference = Rückschluss)](#type-inference-inference--rückschluss)
+    - [QUIZZ](#quizz)
+      - [Understanding Types](#understanding-types)
+        - [1. Why are "Types" useful and offer an advantage compare to vanilla JavaScript?](#1-why-are-types-useful-and-offer-an-advantage-compare-to-vanilla-javascript)
+        - [2. Will the following code throw a compilation error?](#2-will-the-following-code-throw-a-compilation-error)
+        - [3. Does this code rely on type inference?](#3-does-this-code-rely-on-type-inference)
+        - [4. What's the difference between JavaScript types (e.g. typeof `'Max' => 'string'`) and TypeScript types (e.g. `const name: string = '...'`)?](#4-whats-the-difference-between-javascript-types-eg-typeof-max--string-and-typescript-types-eg-const-name-string--)
+    - [Object Types](#object-types)
+    - [Array Types](#array-types)
+    - [Working with Tuples](#working-with-tuples)
+    - [Working with Enums](#working-with-enums)
+    - [The "any" Type](#the-any-type)
+    - [Union Types](#union-types)
+    - [Literal Types](#literal-types)
+    - [Type Aliases \& Object Types](#type-aliases--object-types)
+    - [QUIZZ](#quizz-1)
+      - [Core Types \& Concepts](#core-types--concepts)
+        - [1. Which of the following snippets could be simplified by using an enum type?](#1-which-of-the-following-snippets-could-be-simplified-by-using-an-enum-type)
+        - [2. Will the following code throw a compilation error?](#2-will-the-following-code-throw-a-compilation-error-1)
+        - [3. Will this code make it through compilation?](#3-will-this-code-make-it-through-compilation)
+        - [4. Will this code make it through compilation?](#4-will-this-code-make-it-through-compilation)
+    - [Function Return Types \& "void"](#function-return-types--void)
+    - [Functions as Types](#functions-as-types)
+    - [Functions Types \& Callbacks](#functions-types--callbacks)
+    - [QUIZZ](#quizz-2)
+      - [Functions \& Types](#functions--types)
+        - [1. Will this code compile?](#1-will-this-code-compile)
+        - [2. What's the idea behind a "function type"?](#2-whats-the-idea-behind-a-function-type)
+        - [3. Which code snippet is better (i.e. which code should you write)?](#3-which-code-snippet-is-better-ie-which-code-should-you-write)
+    - [The "unknown" Type](#the-unknown-type)
+    - [The "never" Type](#the-never-type)
+
+
 [Official Link - Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 
 ### Intro

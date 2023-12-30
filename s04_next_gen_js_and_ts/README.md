@@ -1,5 +1,15 @@
 # Next-generation JavaScript & TypeScript
 
+**Table of Contents**
+- [Next-generation JavaScript \& TypeScript](#next-generation-javascript--typescript)
+    - ["let" and "const"](#let-and-const)
+    - [Arrow Functions](#arrow-functions)
+    - [Default Functions Parameters](#default-functions-parameters)
+    - [The Spread Operator (...)](#the-spread-operator-)
+    - [Rest Parameters](#rest-parameters)
+    - [Array \& Object Destructuring](#array--object-destructuring)
+
+
 ### "let" and "const"
 
 `let` is "blocked scoped" `{}`!

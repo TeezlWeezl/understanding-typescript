@@ -1,5 +1,23 @@
 # Generics
 
+**Table of Contents**
+- [Generics](#generics)
+    - [Useful Resources \& Links](#useful-resources--links)
+    - [Built-in Generics \& What are Generics?](#built-in-generics--what-are-generics)
+    - [Creating a Generic Function](#creating-a-generic-function)
+    - [Working with Constraints](#working-with-constraints)
+    - [Another Generic Function](#another-generic-function)
+    - [The "keyof" Constraint](#the-keyof-constraint)
+    - [Generic Classes](#generic-classes)
+    - [Generic Utility Types](#generic-utility-types)
+    - [Generic Types vs Union Types](#generic-types-vs-union-types)
+    - [QUIZZ](#quizz)
+      - [Generics](#generics-1)
+        - [1. When can "Generics" come in very handy?](#1-when-can-generics-come-in-very-handy)
+        - [2. Would the following usage of a generic type make sense?](#2-would-the-following-usage-of-a-generic-type-make-sense)
+        - [3. What's the idea behind constraints (when talking about generics)?](#3-whats-the-idea-behind-constraints-when-talking-about-generics)
+
+
 ### Useful Resources & Links
 
 - [More on Generics](https://www.typescriptlang.org/docs/handbook/generics.html)

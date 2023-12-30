@@ -1,5 +1,23 @@
 # Advanced Types
 
+**Table of Contents**
+
+- [Advanced Types](#advanced-types)
+    - [Useful Resources \& Links](#useful-resources--links)
+    - [Intersection Types](#intersection-types)
+    - [More on Type Guards](#more-on-type-guards)
+    - [Discriminated Unions](#discriminated-unions)
+    - [Types Casting](#types-casting)
+    - [Index Properties](#index-properties)
+    - [Function Overloads](#function-overloads)
+    - [Optional Chaining](#optional-chaining)
+    - [Nullish Coalescing](#nullish-coalescing)
+    - [QUIZZ](#quizz)
+      - [Advanced Types](#advanced-types-1)
+        - [1. What's a "Type Guard"?](#1-whats-a-type-guard)
+        - [2. Which of the following type guards would ensure that you get NO runtime error?](#2-which-of-the-following-type-guards-would-ensure-that-you-get-no-runtime-error)
+        - [3. In which cases is type casting helpful?](#3-in-which-cases-is-type-casting-helpful)
+
 ### Useful Resources & Links
 
 - [More on Advanced Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
@@ -11,7 +29,7 @@ With object type, the intersection type make the combination of the properties o
 ```ts
 type Admin = {
   name: string;
-  privilege: string[];
+  privileges: string[];
 };
 
 type Employee = {
@@ -243,6 +261,8 @@ We want an object return with all the errors we got when we use a form. For exam
 
 We need an object where we know the value type (it should be a string). But we don't know in advance how many properties it will have (and the name of the properties). We need index property type here.
 
+We can also add aditional properties in the inteface, however they must yield the **same type** as the index property.
+
 ```ts
 interface ErrorContainer {
   [prop: string]: string;
@@ -324,7 +344,11 @@ Be sure the value is `null` or `undefined` via nullish coalescing operator `??`.
 const userInput = null; // "DEFAULT"
 const userInput = undefined; // "DEFAULT"
 const userInput = ''; // ''
-const storedData = userInput ?? 'DEFAULT'; // ?? only null and undefined
+const storedFalsyData = userInput || 'DEFAULT'; // ?? null, undefined and empty string
+const storedNullishData = userInput ?? 'DEFAULT'; // ?? only null and undefined
+
+console.log('Stored Falsy Data: ' + storedFalsyData);
+console.log('Stored Nullish Data: ' + storedNullishData);
 ```
 
 ---
