@@ -1,5 +1,22 @@
 # Decorators
 
+**Table of Contents**
+- [Decorators](#decorators)
+    - [Useful Resources \& Links](#useful-resources--links)
+    - [A First Class Decorator](#a-first-class-decorator)
+    - [Working with Decorators Factories](#working-with-decorators-factories)
+    - [Building More Useful Decorators](#building-more-useful-decorators)
+    - [Adding Multiple Decorators](#adding-multiple-decorators)
+    - [Diving into Property Decorators](#diving-into-property-decorators)
+    - [Accessor \& Parameter Decorators](#accessor--parameter-decorators)
+    - [When Do Decorators Execute?](#when-do-decorators-execute)
+    - [Returning (and changing) a Class in a Class Decorator](#returning-and-changing-a-class-in-a-class-decorator)
+    - [Other Decorator Return Types](#other-decorator-return-types)
+    - [Example: Creating an "Autobind" Decorator](#example-creating-an-autobind-decorator)
+    - [Validation with Decorators – First Steps](#validation-with-decorators--first-steps)
+    - [Validation with Decorators – Finished](#validation-with-decorators-finished)
+
+
 ### Useful Resources & Links
 
 - [More on Decorators](https://www.typescriptlang.org/docs/handbook/decorators.html)

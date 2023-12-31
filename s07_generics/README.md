@@ -24,6 +24,8 @@
 
 ### Built-in Generics & What are Generics?
 
+A generic type is a type which is kind of connected with some other type and is really flexible regarding which exact type that other type is.
+
 ```ts
 const names: Array<string> = ['Max', 'Manuel']; // same as string[]
 names[0].split(' ');
@@ -59,7 +61,7 @@ mergedObj.name; // KO – Property 'name' does not exist on type 'object'.
 Solution, create generic types:
 
 ```ts
-function merge<T, U>(objA: T, objB: U) {
+function merge<T extends {}, U extends {}>(objA: T, objB: U) { // 
   return Object.assign(objA, objB);
 }
 
@@ -103,7 +105,7 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
   if (element.length === 1) {
     description = 'Got 1 element.';
   } else if (element.length > 1) {
-    description = 'Got ' + element.length + ' element.';
+    description = 'Got ' + element.length + ' elements.';
   }
   return [element, description];
 }
@@ -112,6 +114,14 @@ console.log(countAndDescribe('Hi there!'));
 console.log(countAndDescribe(['sport', 'cooking']));
 console.log(countAndDescribe([]));
 ```
+
+By creating a new interface here we ensure that the object type we pass in as an argument has a length property.
+
+```ts
+function countAndDescribe<T extends {length: number}>(element: T): [T, string]
+```
+
+Alternatively we can define the type of the property right after the extends keyword.
 
 ---
 
@@ -136,6 +146,8 @@ function extractAndConvert<T extends object, U extends keyof T>(
 extractAndConvert({}, 'name'); // KO – Argument of type '"name"' is not assignable to parameter of type 'never'.
 extractAndConvert({ name: 'Max' }, 'name'); // OK
 ```
+
+the `keyof` operator here is used to ensure that the string that is passed in as a second argument is a key of the first argument which is an object.
 
 ---
 
@@ -221,6 +233,8 @@ function createCourseGoal(
 const newNames: Readonly<string[]> = ['Max', 'Anna'];
 newNames.push('Manu'); // KO – Property 'push' does not exist on type 'readonly string[]'.
 ```
+
+More useful utility types can be found [here](https://www.typescriptlang.org/docs/handbook/utility-types.html)
 
 ---
 
