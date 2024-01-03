@@ -1,0 +1,11 @@
+{
+  "name": "s09_ts_drag_and_drop_project",
+  "version": "1.0.0",
+  "description": "All the details are available in this [repository](https://github.com/themaximehardy/typescript-drag-and-drop).",
+  "main": "app.js",
+  "scripts": {
+    "start": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC"
+}
