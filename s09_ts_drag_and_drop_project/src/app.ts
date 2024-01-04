@@ -156,6 +156,27 @@ abstract class BaseClass<T extends HTMLElement, U extends HTMLElement> {
   abstract renderContent(): void;
 }
 
+class ProjectItem extends BaseClass<HTMLUListElement, HTMLLIElement> {
+  private project: Project
+  listItem: HTMLLIElement = document.createElement('li');
+  
+  constructor(hostId: string, id: string, prj: Project) {
+    super('single-project', hostId, false, prj.id)
+    this.project = prj
+    // this.listItem.textContent = prjItem.title;
+    // listEl.appendChild(this.listItem);
+
+    this.configure()
+    this.renderContent()
+  }
+  configure(): void {}
+  renderContent(): void {
+    this.element.querySelector('h2')!.textContent = this.project.title
+    this.element.querySelector('h3')!.textContent = `People: ${this.project.people.toString()}`
+    this.element.querySelector('p')!.textContent = this.project.description
+  }
+}
+
 // ProjectList Class
 class ProjectList extends BaseClass<HTMLDivElement, HTMLElement> {
   assignedProjects: Project[];
@@ -190,9 +211,7 @@ class ProjectList extends BaseClass<HTMLDivElement, HTMLElement> {
     }
     // appending all projects list items
     for (const prjItem of this.assignedProjects) {
-      const listItem = document.createElement('li');
-      listItem.textContent = prjItem.title;
-      listEl.appendChild(listItem);
+      new ProjectItem(this.element.querySelector('ul')!.id,'project-item' , prjItem)
     }
   }
 
