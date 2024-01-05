@@ -159,6 +159,13 @@ abstract class BaseClass<T extends HTMLElement, U extends HTMLElement> {
 class ProjectItem extends BaseClass<HTMLUListElement, HTMLLIElement> {
   private project: Project
   listItem: HTMLLIElement = document.createElement('li');
+
+  get persons() {
+    if (this.project.people === 1) {
+      return '1 Person'
+    }
+    return `${this.project.people} persons`
+  }
   
   constructor(hostId: string, id: string, prj: Project) {
     super('single-project', hostId, false, prj.id)
@@ -172,7 +179,7 @@ class ProjectItem extends BaseClass<HTMLUListElement, HTMLLIElement> {
   configure(): void {}
   renderContent(): void {
     this.element.querySelector('h2')!.textContent = this.project.title
-    this.element.querySelector('h3')!.textContent = `People: ${this.project.people.toString()}`
+    this.element.querySelector('h3')!.textContent = `${this.persons} assigned`
     this.element.querySelector('p')!.textContent = this.project.description
   }
 }
