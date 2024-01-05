@@ -99,7 +99,16 @@ class ProjectItem extends BaseClass {
         this.configure();
         this.renderContent();
     }
-    configure() { }
+    dragStartHandler(event) {
+        console.log(event);
+    }
+    dragEndHandler(_) {
+        console.log('DragEnd detected...');
+    }
+    configure() {
+        this.element.addEventListener('dragstart', this.dragStartHandler.bind(this));
+        this.element.addEventListener('dragend', this.dragEndHandler);
+    }
     renderContent() {
         this.element.querySelector('h2').textContent = this.project.title;
         this.element.querySelector('h3').textContent = `${this.persons} assigned`;
@@ -111,6 +120,36 @@ class ProjectList extends BaseClass {
         super('project-list', 'app', false, `${type}-projects`);
         this.type = type;
         this.assignedProjects = [];
+        this.configure();
+    }
+    dragOverHandler(event) {
+        const listEl = this.element.querySelector('ul');
+        listEl.classList.add('droppable');
+    }
+    dropHandler(event) {
+        console.log('Element dropped...');
+    }
+    dragLeaveHandler(event) {
+        const listEl = this.element.querySelector('ul');
+        listEl.classList.remove('droppable');
+    }
+    renderContent() {
+        const listEl = document.getElementById(`${this.type}-projects-list`);
+        while (listEl.firstChild) {
+            listEl.removeChild(listEl.firstChild);
+        }
+        for (const prjItem of this.assignedProjects) {
+            new ProjectItem(this.element.querySelector('ul').id, 'project-item', prjItem);
+        }
+    }
+    configure() {
+        this.element.addEventListener('dragover', this.dragOverHandler.bind(this));
+        this.element.addEventListener('dragleave', this.dragLeaveHandler.bind(this));
+        this.element.addEventListener('drop', this.dragLeaveHandler.bind(this));
+        const listId = `${this.type}-projects-list`;
+        this.element.querySelector('ul').id = listId;
+        this.element.querySelector('h2').textContent =
+            this.type.toUpperCase() + ' PROJECTS';
         prjState.addListener((prjList) => {
             const relevantPrjList = prjList.filter((prj) => {
                 if (this.type === 'active') {
@@ -123,22 +162,6 @@ class ProjectList extends BaseClass {
             this.assignedProjects = relevantPrjList;
             this.renderContent();
         });
-        this.configure();
-    }
-    renderContent() {
-        const listEl = document.getElementById(`${this.type}-projects-list`);
-        while (listEl.firstChild) {
-            listEl.removeChild(listEl.firstChild);
-        }
-        for (const prjItem of this.assignedProjects) {
-            new ProjectItem(this.element.querySelector('ul').id, 'project-item', prjItem);
-        }
-    }
-    configure() {
-        const listId = `${this.type}-projects-list`;
-        this.element.querySelector('ul').id = listId;
-        this.element.querySelector('h2').textContent =
-            this.type.toUpperCase() + ' PROJECTS';
     }
 }
 class ProjectInput extends BaseClass {
@@ -147,8 +170,7 @@ class ProjectInput extends BaseClass {
         this.templateElement = document.getElementById('project-input');
         this.hostElement = document.getElementById('app');
         this.titleInputElement = this.element.querySelector('#title');
-        this.descriptionInputElement =
-            this.element.querySelector('#description');
+        this.descriptionInputElement = this.element.querySelector('#description');
         this.peopleInputElement = this.element.querySelector('#people');
         this.renderContent();
     }
