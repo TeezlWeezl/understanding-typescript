@@ -57,6 +57,21 @@ class ProjectState extends State<Project> {
     return this.instance;
   }
 
+  private updateProjects() {
+    for (const listenerFn of this.listeners) {
+      const projectsCopy = this.projects.slice(); // slice to add only a copy of the projects array
+      listenerFn(projectsCopy);
+    }
+  }
+
+  moveProject(prjId: string, newStatus: ProjectStatus) {
+    const project = this.projects.find((prj) => prj.id === prjId);
+    if (project && project.prjStatus !== newStatus) {
+      project.prjStatus = newStatus;
+      this.updateProjects();
+    }
+  }
+
   addProject(
     title: string,
     description: string,
@@ -64,17 +79,14 @@ class ProjectState extends State<Project> {
     prjStatus: ProjectStatus.active,
   ) {
     const newProject = new Project(
-      Math.random.toString(),
+      Math.random().toString(),
       title,
       description,
       numOfPeople,
       prjStatus,
     );
     this.projects.push(newProject);
-    for (const listenerFn of this.listeners) {
-      const projectsCopy = this.projects.slice(); // slice to add only a copy of the projects array
-      listenerFn(projectsCopy);
-    }
+    this.updateProjects();
   }
 }
 
@@ -192,7 +204,8 @@ class ProjectItem
   }
 
   dragStartHandler(event: DragEvent): void {
-    console.log(event);
+    event.dataTransfer!.setData('text/plain', this.project.id);
+    event.dataTransfer!.effectAllowed = 'move';
   }
   dragEndHandler(_: DragEvent): void {
     console.log('DragEnd detected...');
@@ -226,12 +239,22 @@ class ProjectList
   }
 
   dragOverHandler(event: DragEvent): void {
-    const listEl = this.element.querySelector('ul')!;
-    listEl.classList.add('droppable');
+    // only execute if event.dataTransfer exists and is of type 'text/plain'
+    if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+      // preventDefault() necessary, default is to not allow drop
+      event.preventDefault();
+      const listEl = this.element.querySelector('ul')!;
+      listEl.classList.add('droppable');
+    }
   }
   dropHandler(event: DragEvent): void {
-    console.log('Element dropped...');
+    const prjId: string = event.dataTransfer!.getData('text/plain');
+    prjState.moveProject(
+      prjId,
+      this.type === 'active' ? ProjectStatus.active : ProjectStatus.finished,
+    );
   }
+
   dragLeaveHandler(event: DragEvent): void {
     const listEl = this.element.querySelector('ul')!;
     listEl.classList.remove('droppable');
@@ -256,9 +279,12 @@ class ProjectList
   }
 
   configure() {
-    this.element.addEventListener('dragover', this.dragOverHandler.bind(this))
-    this.element.addEventListener('dragleave', this.dragLeaveHandler.bind(this))
-    this.element.addEventListener('drop', this.dragLeaveHandler.bind(this))
+    this.element.addEventListener('dragover', this.dragOverHandler.bind(this));
+    this.element.addEventListener(
+      'dragleave',
+      this.dragLeaveHandler.bind(this),
+    );
+    this.element.addEventListener('drop', this.dropHandler.bind(this));
 
     const listId = `${this.type}-projects-list`;
     this.element.querySelector('ul')!.id = listId;
